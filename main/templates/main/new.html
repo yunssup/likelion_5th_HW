@@ -1,16 +1,20 @@
-{% extends 'base.html' %}
-{% load static %}
+{% extends 'base.html' %} {% load static %} {% block content %}
 
-{% block content %}
+<form
+  action="{%url 'main:create'%}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  {%csrf_token%}
+  <p>제목 : <input type="text" name="title" /></p>
+  <p>작성자 : <input type="text" name="writer" /></p>
+  <p>사진 : <input type="file" name="image" /></p>
 
-<form action="{%url 'create'%}" method="POST">
-    {%csrf_token%}
-    <p>제목 : <input type="text" name="title"></p>
-    <p>작성자 : <input type="text" name="writer"></p>
-    <p>내용 : <textarea type="text" name="body" id="" cols="30" rows="10"></textarea></p>
-    <button type="submit">제출</button>
+  <p>
+    내용 :
+    <textarea type="text" name="body" id="" cols="30" rows="10"></textarea>
+  </p>
+  <button type="submit">제출</button>
 </form>
 
 {% endblock %}
-
-
